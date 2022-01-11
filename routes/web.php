@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +21,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['prefix' => 'dashboard/admin'], function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('profile', [HomeController::class, 'profile'])->name('profile');
+    Route::post('profile/update', [HomeController::class, 'updateprofile'])->name('profile.update');
+});

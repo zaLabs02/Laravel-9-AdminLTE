@@ -1,5 +1,5 @@
 @extends('layouts.base_admin.base_dashboard')
-
+@section('judul', 'Halaman Dashboard')
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
