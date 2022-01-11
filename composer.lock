@@ -1029,12 +1029,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "13e5fbf4c2a2effb28d18686efd2d49c21b56e50"
+                "reference": "0b187784a1f0c79a0b793fc9925c42749913bc56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/13e5fbf4c2a2effb28d18686efd2d49c21b56e50",
-                "reference": "13e5fbf4c2a2effb28d18686efd2d49c21b56e50",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/0b187784a1f0c79a0b793fc9925c42749913bc56",
+                "reference": "0b187784a1f0c79a0b793fc9925c42749913bc56",
                 "shasum": ""
             },
             "require": {
@@ -1045,7 +1045,7 @@
                 "ext-openssl": "*",
                 "laravel/serializable-closure": "^1.0",
                 "league/commonmark": "^2.0.2",
-                "league/flysystem": "^2.0",
+                "league/flysystem": "^2.3.1",
                 "monolog/monolog": "^2.0",
                 "nesbot/carbon": "^2.53.1",
                 "php": "^8.0.2",
@@ -1064,7 +1064,7 @@
                 "symfony/routing": "^6.0",
                 "symfony/var-dumper": "^6.0",
                 "tijsverkoyen/css-to-inline-styles": "^2.2.2",
-                "vlucas/phpdotenv": "^5.3",
+                "vlucas/phpdotenv": "^5.4.1",
                 "voku/portable-ascii": "^1.4.8"
             },
             "conflict": {
@@ -1125,6 +1125,7 @@
                 "symfony/cache": "^6.0"
             },
             "suggest": {
+                "ably/ably-php": "Required to use the Ably broadcast driver (^1.0).",
                 "aws/aws-sdk-php": "Required to use the SQS queue driver and DynamoDb failed job storage (^3.198.1).",
                 "brianium/paratest": "Required to run tests in parallel (^6.0).",
                 "doctrine/dbal": "Required to rename columns and drop SQLite columns (^2.13.3|^3.1.4).",
@@ -1199,7 +1200,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-01-07T21:26:42+00:00"
+            "time": "2022-01-10T17:34:58+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -1326,16 +1327,16 @@
         },
         {
             "name": "laravel/tinker",
-            "version": "dev-develop",
+            "version": "2.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/tinker.git",
-                "reference": "35b627ae4a2047dc2d6e1b72a8214d585302bc9c"
+                "reference": "5f2f9815b7631b9f586a3de7933c25f9327d4073"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/tinker/zipball/35b627ae4a2047dc2d6e1b72a8214d585302bc9c",
-                "reference": "35b627ae4a2047dc2d6e1b72a8214d585302bc9c",
+                "url": "https://api.github.com/repos/laravel/tinker/zipball/5f2f9815b7631b9f586a3de7933c25f9327d4073",
+                "reference": "5f2f9815b7631b9f586a3de7933c25f9327d4073",
                 "shasum": ""
             },
             "require": {
@@ -1343,7 +1344,7 @@
                 "illuminate/contracts": "^6.0|^7.0|^8.0|^9.0",
                 "illuminate/support": "^6.0|^7.0|^8.0|^9.0",
                 "php": "^7.2.5|^8.0",
-                "psy/psysh": "^0.10.4|^0.11.0",
+                "psy/psysh": "^0.10.4|^0.11.1",
                 "symfony/var-dumper": "^4.3.4|^5.0|^6.0"
             },
             "require-dev": {
@@ -1353,10 +1354,11 @@
             "suggest": {
                 "illuminate/database": "The Illuminate Database package (^6.0|^7.0|^8.0|^9.0)."
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.x-dev"
+                    "dev-master": "2.x-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -1388,9 +1390,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/tinker/issues",
-                "source": "https://github.com/laravel/tinker/tree/develop"
+                "source": "https://github.com/laravel/tinker/tree/2.x"
             },
-            "time": "2021-11-29T15:45:07+00:00"
+            "time": "2022-01-10T08:52:49+00:00"
         },
         {
             "name": "laravel/ui",
@@ -5762,30 +5764,31 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "dev-develop",
+            "version": "v6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "7d6db12965f293a5c99fff7e3e2d3e24e9eb13f0"
+                "reference": "5338ecc3909ef3ed150f6408f14e44cdb62bfdd0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/7d6db12965f293a5c99fff7e3e2d3e24e9eb13f0",
-                "reference": "7d6db12965f293a5c99fff7e3e2d3e24e9eb13f0",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/5338ecc3909ef3ed150f6408f14e44cdb62bfdd0",
+                "reference": "5338ecc3909ef3ed150f6408f14e44cdb62bfdd0",
                 "shasum": ""
             },
             "require": {
                 "facade/ignition-contracts": "^1.0.2",
-                "filp/whoops": "^2.14.4",
+                "filp/whoops": "^2.14.5",
                 "php": "^8.0.0",
                 "symfony/console": "^6.0.2"
             },
             "require-dev": {
-                "laravel/framework": "9.x-dev",
+                "brianium/paratest": "^6.4.1",
+                "laravel/framework": "^9.0",
                 "nunomaduro/larastan": "^1.0.2",
                 "nunomaduro/mock-final-classes": "^1.1.0",
                 "orchestra/testbench": "^7.0.0",
-                "phpunit/phpunit": "^9.5.8"
+                "phpunit/phpunit": "^9.5.11"
             },
             "type": "library",
             "extra": {
@@ -5844,7 +5847,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-01-02T22:47:38+00:00"
+            "time": "2022-01-10T17:17:19+00:00"
         },
         {
             "name": "phar-io/manifest",

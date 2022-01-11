@@ -7,28 +7,21 @@ $links = [
         "is_multi" => false
     ],
     [
-        "href" => '#',
-        "text" => "Akun",
-        "icon" => "fas fa-user",
-        "is_multi" => false
-    ],
-    [
-        "text" => "Starter Page",
+        "text" => "Kelola Akun",
+        "icon" => "fas fa-users",
         "is_multi" => true,
-        "icon" => "fas fa-book",
         "href" => [
             [
-                "section_text" => "Active Page",
+                "section_text" => "Data Akun",
                 "section_icon" => "far fa-circle",
-                "section_href" => route('home')
+                "section_href" => route('akun')
             ],
             [
-                "section_text" => "Inactive Page",
+                "section_text" => "Tambah Akun",
                 "section_icon" => "far fa-circle",
-                "section_href" => '#'
+                "section_href" => route('akun.add')
             ]
         ]
-
     ]
 ];
 $navigation_links = json_decode(json_encode($links));
@@ -64,7 +57,7 @@ $navigation_links = json_decode(json_encode($links));
 
             @if (!$link->is_multi)
             <li class="nav-item">
-            <a href="{{ (url()->current() == $link->href) ? '#' : $link->href }}" class="nav-link">
+            <a href="{{ (url()->current() == $link->href) ? '#' : $link->href }}" class="nav-link {{ (url()->current() == $link->href) ? 'active' : '' }}">
               <i class="nav-icon {{ $link->icon }}"></i>
               <p>
                 {{ $link->text }}

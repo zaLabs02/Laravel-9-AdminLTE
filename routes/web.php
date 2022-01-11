@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AkunController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -23,6 +24,18 @@ Auth::routes();
 
 Route::group(['prefix' => 'dashboard/admin'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('profile', [HomeController::class, 'profile'])->name('profile');
-    Route::post('profile/update', [HomeController::class, 'updateprofile'])->name('profile.update');
+
+    Route::group(['prefix' => 'profile'], function () {
+        Route::get('/', [HomeController::class, 'profile'])->name('profile');
+        Route::post('update', [HomeController::class, 'updateprofile'])->name('profile.update');
+    });
+
+    Route::group(['prefix' => 'akun'], function () {
+        Route::get('/', [AkunController::class, 'index'])->name('akun');
+        Route::post('showdata', [AkunController::class, 'dataTable'])->name('akun.dataTable');
+        Route::match(['get','post'],'tambah', [AkunController::class, 'tambahAkun'])->name('akun.add');
+        Route::match(['get','post'],'{id}/ubah', [AkunController::class, 'ubahAkun'])->name('akun.edit');
+        Route::delete('{id}/hapus', [AkunController::class, 'hapusAkun'])->name('akun.delete');
+        // Route::post('update', [HomeController::class, 'updateprofile'])->name('profile.update');
+    });
 });
