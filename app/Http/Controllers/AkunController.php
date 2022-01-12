@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -35,14 +36,16 @@ class AkunController extends Controller
 
         if(empty($request->input('search.value')))
         {
-            $akun_data = User::offset($start_val)
+            $akun_data = User::where('id','!=',Auth::id())
+            ->offset($start_val)
             ->limit($limit_val)
             ->orderBy($order_val,$dir_val)
             ->get();
         } else {
             $search_text = $request->input('search.value');
 
-            $akun_data =  User::where('id','LIKE',"%{$search_text}%")
+            $akun_data =  User::where('id','!=',Auth::id())
+            ->where('id','LIKE',"%{$search_text}%")
             ->orWhere('name', 'LIKE',"%{$search_text}%")
             ->orWhere('email', 'LIKE',"%{$search_text}%")
             ->offset($start_val)
@@ -50,7 +53,8 @@ class AkunController extends Controller
             ->orderBy($order_val,$dir_val)
             ->get();
 
-            $totalFilteredRecord = User::where('id','LIKE',"%{$search_text}%")
+            $totalFilteredRecord = User::where('id','!=',Auth::id())
+            ->where('id','LIKE',"%{$search_text}%")
             ->orWhere('name', 'LIKE',"%{$search_text}%")
             ->orWhere('email', 'LIKE',"%{$search_text}%")
             ->count();

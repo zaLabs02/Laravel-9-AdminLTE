@@ -1029,12 +1029,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "0b187784a1f0c79a0b793fc9925c42749913bc56"
+                "reference": "312a5577cc34c366a64ba855068205b1f82c1998"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/0b187784a1f0c79a0b793fc9925c42749913bc56",
-                "reference": "0b187784a1f0c79a0b793fc9925c42749913bc56",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/312a5577cc34c366a64ba855068205b1f82c1998",
+                "reference": "312a5577cc34c366a64ba855068205b1f82c1998",
                 "shasum": ""
             },
             "require": {
@@ -1071,7 +1071,7 @@
                 "tightenco/collect": "<5.5.33"
             },
             "provide": {
-                "psr/container-implementation": "1.0",
+                "psr/container-implementation": "1.1|2.0",
                 "psr/simple-cache-implementation": "1.0|2.0|3.0"
             },
             "replace": {
@@ -1200,7 +1200,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-01-10T17:34:58+00:00"
+            "time": "2022-01-11T15:33:22+00:00"
         },
         {
             "name": "laravel/sanctum",

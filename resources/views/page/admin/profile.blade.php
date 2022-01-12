@@ -73,6 +73,13 @@ Profil') @section('content')
                     <div class="card-body">
                         <div class="tab-content">
                             <div class="active tab-pane" id="profil">
+                                @if(session('status'))
+                                <div class="alert alert-success alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <h4><i class="icon fa fa-check"></i> Berhasil!</h4>
+                                    {{ session('status') }}
+                                </div>
+                                @endif
                                 <b>Nama:</b>
                                 <br/>
                                 {{Auth::user()->name}}
@@ -112,104 +119,160 @@ Profil') @section('content')
                             <!-- /.tab-pane -->
 
                             <div class="tab-pane" id="updateData">
-                                <form
-                                    class="form-horizontal"
-                                    method="post"
-                                    action="{{ route('profile.update') }}"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="form-group row">
-                                        <label for="inputName" class="col-sm-2 col-form-label">Nama</label>
-                                        <div class="col-sm-10">
-                                            <input
-                                                type="text"
-                                                name="name"
-                                                class="form-control @error('name') is-invalid @enderror"
-                                                id="inputName"
-                                                placeholder="Masukkan Nama"
-                                                value="{{ Auth::user()->name }}">
-                                            @error('name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form action="{{ route('profile.update',['type'=>'change_profile']) }}" method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            <div class="card card-primary">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Informasi Data Diri</h3>
+
+                                                    <div class="card-tools">
+                                                        <button
+                                                            type="button"
+                                                            class="btn btn-tool"
+                                                            data-card-widget="collapse"
+                                                            title="Collapse">
+                                                            <i class="fas fa-minus"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <label for="inputName">Nama</label>
+                                                        <input
+                                                            type="text"
+                                                            id="inputName"
+                                                            name="name"
+                                                            class="form-control @error('name') is-invalid @enderror"
+                                                            placeholder="Masukkan Nama"
+                                                            value="{{ Auth::user()->name }}"
+                                                            required="required"
+                                                            autocomplete="name">
+                                                        @error('name')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputEmail">Email</label>
+                                                        <input
+                                                            type="email"
+                                                            id="inputEmail"
+                                                            name="email"
+                                                            class="form-control @error('email') is-invalid @enderror"
+                                                            placeholder="Masukkan Email"
+                                                            value="{{ Auth::user()->email }}"
+                                                            required="required"
+                                                            autocomplete="email">
+                                                        @error('email')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputFoto">Foto Profil</label>
+                                                        <div class="row">
+                                                            <div class="col-md-4">
+                                                                @if (Auth::user()->user_image)
+                                                                <img
+                                                                    class="elevation-3"
+                                                                    id="prevImg"
+                                                                    src="{{ Auth::user()->user_image }}"
+                                                                    width="150px"/>
+                                                                @else
+                                                                <img
+                                                                    class="elevation-3"
+                                                                    id="prevImg"
+                                                                    src="{{ asset('vendor/adminlte3/img/user2-160x160.jpg') }}"
+                                                                    width="80px"/>
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <input
+                                                                    type="file"
+                                                                    id="inputFoto"
+                                                                    name="user_image"
+                                                                    accept="image/*"
+                                                                    class="form-control @error('user_image') is-invalid @enderror"
+                                                                    placeholder="Upload foto profil">
+                                                            </div>
+                                                        </div>
+
+                                                        @error('user_image')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin:10px">
+                                                    <div class="col-12">
+                                                        <input type="submit" value="Ubah Akun" class="btn btn-primary float-right">
+                                                    </div>
+                                                </div>
+                                                <!-- /.card-body -->
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                                        <div class="col-sm-10">
-                                            <input
-                                                type="email"
-                                                name="email"
-                                                class="form-control @error('email') is-invalid @enderror"
-                                                id="inputEmail"
-                                                placeholder="Masukkan Email"
-                                                value="{{ Auth::user()->email }}">
-                                            @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
+                                    <div class="col-md-6">
+                                        <form action="{{ route('profile.update',['type'=>'change_password']) }}" method="post">
+                                            @csrf
+                                            <div class="card card-secondary">
+                                                <div class="card-header">
+                                                    <h3 class="card-title">Password</h3>
+
+                                                    <div class="card-tools">
+                                                        <button
+                                                            type="button"
+                                                            class="btn btn-tool"
+                                                            data-card-widget="collapse"
+                                                            title="Collapse">
+                                                            <i class="fas fa-minus"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <label for="password">Password</label>
+                                                        <input
+                                                            id="password"
+                                                            type="password"
+                                                            placeholder="Kata Sandi"
+                                                            class="form-control @error('password') is-invalid @enderror"
+                                                            name="password"
+                                                            required="required"
+                                                            autocomplete="new-password">
+                                                        @error('password')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="password-confirm">Konfirmasi Password</label>
+                                                        <input
+                                                            placeholder="Ketik ulang kata sandi"
+                                                            id="password-confirm"
+                                                            type="password"
+                                                            class="form-control"
+                                                            name="password_confirmation"
+                                                            required="required"
+                                                            autocomplete="new-password">
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin:10px">
+                                                    <div class="col-12">
+                                                        <input type="submit" value="Simpan Perubahan Password" class="btn btn-warning float-right">
+                                                    </div>
+                                                </div>
+                                                <!-- /.card-body -->
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div class="form-group row">
-                                        <label for="password" class="col-sm-2 col-form-label">Password
-                                            <b>(baru)</b>
-                                        </label>
-                                        <div class="col-sm-10">
-                                            <input
-                                                type="password"
-                                                name="password"
-                                                class="form-control @error('password') is-invalid @enderror"
-                                                id="password"
-                                                placeholder="Masukkan Password baru">
-                                            @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="password-confirm" class="col-sm-2 col-form-label">Konfirmasi Password</label>
-                                        <div class="col-sm-10">
-                                            <input
-                                                type="password"
-                                                name="password_confirmation"
-                                                class="form-control"
-                                                id="password-confirm"
-                                                placeholder="Ketik ulang kata sandi">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputName" class="col-sm-2 col-form-label">Foto Profil</label>
-                                        <div class="col-sm-10">
-                                            @if (Auth::user()->user_image)
-                                            <img src="{{ Auth::user()->user_image }}" width="200px">
-                                            <small>
-                                                <b>Jika anda mengupload file baru, maka yang lama kehapus.</b>
-                                            </small>
-                                            @endif
-                                            <input
-                                                type="file"
-                                                name="user_image"
-                                                class="form-control @error('user_image') is-invalid @enderror">
-                                            <br>
-                                            @error('user_image')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
-                                            <small class="text-danger">{{ $errors->first('gambar_buku') }}</small>
-                                            {{-- <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="inputName" placeholder="Masukkan Nama" value="{{ Auth::user()->name }}"> --}}
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="offset-sm-2 col-sm-10">
-                                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                                        </div>
-                                    </div>
-                                </form>
+                                </div>
                             </div>
                             <!-- /.tab-pane -->
                         </div>
@@ -226,4 +289,14 @@ Profil') @section('content')
     <!-- /.container-fluid -->
 </section>
 
+@endsection
+@section('script_footer')
+<script>
+    inputFoto.onchange = evt => {
+        const [file] = inputFoto.files
+        if (file) {
+            prevImg.src = URL.createObjectURL(file)
+        }
+    }
+</script>
 @endsection
