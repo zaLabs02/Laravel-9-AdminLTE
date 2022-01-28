@@ -14,7 +14,7 @@ $links = [
             [
                 "section_text" => "Data Akun",
                 "section_icon" => "far fa-circle",
-                "section_href" => route('akun')
+                "section_href" => route('akun.index')
             ],
             [
                 "section_text" => "Tambah Akun",

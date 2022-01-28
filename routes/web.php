@@ -30,12 +30,14 @@ Route::group(['prefix' => 'dashboard/admin'], function () {
         Route::post('update', [HomeController::class, 'updateprofile'])->name('profile.update');
     });
 
-    Route::group(['prefix' => 'akun'], function () {
-        Route::get('/', [AkunController::class, 'index'])->name('akun');
-        Route::post('showdata', [AkunController::class, 'dataTable'])->name('akun.dataTable');
-        Route::match(['get','post'],'tambah', [AkunController::class, 'tambahAkun'])->name('akun.add');
-        Route::match(['get','post'],'{id}/ubah', [AkunController::class, 'ubahAkun'])->name('akun.edit');
-        Route::delete('{id}/hapus', [AkunController::class, 'hapusAkun'])->name('akun.delete');
-        // Route::post('update', [HomeController::class, 'updateprofile'])->name('profile.update');
-    });
+    Route::controller(AkunController::class)
+        ->prefix('akun')
+        ->as('akun.')
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('showdata', 'dataTable')->name('dataTable');
+            Route::match(['get','post'],'tambah', 'tambahAkun')->name('add');
+            Route::match(['get','post'],'{id}/ubah', 'ubahAkun')->name('edit');
+            Route::delete('{id}/hapus', 'hapusAkun')->name('delete');
+        });
 });
