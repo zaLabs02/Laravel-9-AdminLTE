@@ -1,8 +1,8 @@
 {
-    "name": "laravel/laravel",
+    "name": "afrizalmy/laravel9-adminlte",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "description": "Laravel Admin Starter project dengan AdminLTE v3.",
+    "keywords": ["framework", "laravel","adminlte"],
     "license": "MIT",
     "require": {
         "php": "^8.0",
@@ -47,7 +47,20 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi",
-            "@php artisan storage:link --ansi"
+            "php artisan storage:link",
+            "composer clear-all"
+        ],
+        "clear-all": [
+            "@php artisan optimize:clear",
+            "composer dumpautoload -o"
+        ],
+        "cache-all": [
+            "@php artisan config:cache",
+            "@php artisan route:cache"
+        ],
+        "cc": [
+            "composer clear-all",
+            "composer cache-all"
         ]
     },
     "extra": {
